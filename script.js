@@ -70,11 +70,11 @@ function barchart() {
             hideloader();
         }
 
-        if (document.getElementsByTagName("title").innerHTML = "Table") {
+        if (document.querySelector("title").innerText == "Table") {
             table(data);
         }
 
-        else if (document.getElementsByTagName("title").innerHTML = "Piechart") {
+        else if (document.querySelector("title").innerText == "Piechart") {
             barchart();
         }
     }
