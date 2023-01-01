@@ -1,12 +1,10 @@
-//api url
 const api_url = "https://my.api.mockaroo.com/movies.json?key=4dc73f40";
 
-// Function to hide the loader
 function hideloader() {
     document.getElementById('loading').style.display = 'none';
 }
 
-// Function to define innerHTML for HTML table
+
 function table(data) {
     let tab = 
         `<tr>
@@ -21,7 +19,6 @@ function table(data) {
         <th>Film Director</th>
         </tr>`;
 
-    // Loop to access all rows 
     for (let r of data) {
         tab += `<tr>
     <td>${r.id}</td>
@@ -36,46 +33,82 @@ function table(data) {
     </tr>`;
     }
 
-    // Setting innerHTML as tab variable
     document.getElementById("movies").innerHTML = tab;
 }
 
-function barchart() {
-    const chart = {
-        labels: [
-            'Red',
-            'Blue',
-            'Yellow'
-        ],
-        datasets: [{
-            label: 'My First Dataset',
-            data: [300, 50, 100],
-            backgroundColor: [
-            'rgb(255, 99, 132)',
-            'rgb(54, 162, 235)',
-            'rgb(255, 205, 86)'
-            ],
-            hoverOffset: 4
-        }]
+
+function piechart(data) {
+
+    let labels = []; let allDates = []; let itemData = [];
+    let counter = 0;
+
+    for (let r of data) {
+        allDates.push(r.year_of_production);
+        if (labels.includes(r.year_of_production) == false) {
+            labels.push(r.year_of_production);
+        }
+    };
+
+    for (let index of Array(labels.length).keys()) {
+        counter = 0;
+        for (let date of allDates) {
+            if (date == labels[index]) {
+                counter++;
+            };
         };
- }
-
-    //defining async function
-    async function getapi(url) {
-        const response = await fetch(url);
-
-        let data = await response.json(); //data stored in data
-        
-        if (response) {
-            hideloader();
-        }
-
-        if (document.querySelector("title").innerText == "Table") {
-            table(data);
-        }
-
-        else if (document.querySelector("title").innerText == "Piechart") {
-            barchart();
-        }
+        itemData.push(counter);
     }
-    getapi(api_url);
+
+    const info = {
+        labels: labels,
+        datasets: [{
+          data: itemData,
+          backgroundColor: ['#78fa99', '#56b26d', '#2d743f', '#c6f782', '#a4f434', '#f1fc4c', '#e4ea83', '#f5c286', '#ff8800', '#b67c3a', '#95b0f2', '#5074cc', '#3159bc', '#85a1e5', '#e984f4', '#95429e', '#e11bf7', '#f54994', '#ed3030', '#f70000', '#daecec', '#47cdcd', '#05abac', '#a4baf0', '#c76727', '#cc9773', '#e11aa5', '#0fe203', '#54d54d', '#b6d2b5' , '#f7fc1d', '#eca735', '#e9cb9b', '#aeaaa5' , '#f2ddba' , '#965d00' , '#71c9d2' , '#2ba6b2' , '#d7badc' , '#706273', '#ea32cc'],
+        }]
+    };
+
+    const config = {
+        type: 'pie',
+        data: info,
+        options: {
+            plugins: {
+                legend: {
+                    display: false,
+                },
+                title: {
+                    display: true,
+                    text: "Year of production of the films"
+                }
+            }
+        }
+    };
+
+    new Chart(
+        document.getElementById("piechart"),
+        config
+    );
+}
+
+
+async function getapi(url) {
+    const response = await fetch(url);
+
+    let data = await response.json(); //data in json format are stored in 'data' variable
+        
+    if (response) {
+        hideloader();
+    };
+
+    if (document.querySelector("title").innerText == "Table") {
+        table(data);
+    }
+
+    else if (document.querySelector("title").innerText == "Piechart") {
+        piechart(data)
+    }
+
+    else if (document.querySelector("title").innerText == "Barchart") {
+
+    }
+}
+getapi(api_url);
