@@ -58,14 +58,14 @@ function barchart() {
             hoverOffset: 4
         }]
         };
-    }
+ }
 
     //defining async function
     async function getapi(url) {
         const response = await fetch(url);
 
         let data = await response.json(); //data stored in data
-        console.log(data)
+        
         if (response) {
             hideloader();
         }
