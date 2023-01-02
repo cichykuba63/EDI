@@ -39,8 +39,7 @@ function table(data) {
 
 function piechart(data) {
 
-    let labels = []; let allDates = []; let itemData = [];
-    let counter = 0;
+    let labels = []; let allDates = []; let itemData = []; let counter = 0;
 
     for (let r of data) {
         allDates.push(r.year_of_production);
@@ -48,6 +47,8 @@ function piechart(data) {
             labels.push(r.year_of_production);
         }
     };
+
+    labels.sort()
 
     for (let index of Array(labels.length).keys()) {
         counter = 0;
@@ -64,6 +65,7 @@ function piechart(data) {
         datasets: [{
           data: itemData,
           backgroundColor: ['#78fa99', '#56b26d', '#2d743f', '#c6f782', '#a4f434', '#f1fc4c', '#e4ea83', '#f5c286', '#ff8800', '#b67c3a', '#95b0f2', '#5074cc', '#3159bc', '#85a1e5', '#e984f4', '#95429e', '#e11bf7', '#f54994', '#ed3030', '#f70000', '#daecec', '#47cdcd', '#05abac', '#a4baf0', '#c76727', '#cc9773', '#e11aa5', '#0fe203', '#54d54d', '#b6d2b5' , '#f7fc1d', '#eca735', '#e9cb9b', '#aeaaa5' , '#f2ddba' , '#965d00' , '#71c9d2' , '#2ba6b2' , '#d7badc' , '#706273', '#ea32cc'],
+          hoverOffset: 25,
         }]
     };
 
@@ -71,6 +73,7 @@ function piechart(data) {
         type: 'pie',
         data: info,
         options: {
+            responsive: true,
             plugins: {
                 legend: {
                     display: false,
@@ -78,13 +81,68 @@ function piechart(data) {
                 title: {
                     display: true,
                     text: "Year of production of the films"
-                }
+                },
             }
         }
     };
 
     new Chart(
         document.getElementById("piechart"),
+        config
+    );
+}
+
+function barchart(data) {
+
+    let labels = []; let allData = []; let itemData = []; let counter = 0;
+
+    for (let r of data) {
+        allData.push(r.country_of_origin);
+        if (labels.includes(r.country_of_origin) == false) {
+            labels.push(r.country_of_origin);
+        }
+    };
+
+    labels.sort();
+
+    for (let index of Array(labels.length).keys()) {
+        counter = 0;
+        for (let date of allData) {
+            if (date == labels[index]) {
+                counter++;
+            };
+        };
+        itemData.push(counter);
+    };
+
+    const info = {
+        labels: labels,
+        datasets: [{
+          data: itemData,
+          backgroundColor: ['#7f6b4d', '#a70b7d', '#e41c15', '#4a7bde', '#f51e58', '#2e987b', '#14f915', '#9c6b54'],
+          hoverOffset: 25,
+        }]
+    };
+
+    const config = {
+        type: 'bar',
+        data: info,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false,
+                },
+                title: {
+                    display: true,
+                    text: "Countries of origin of movies"
+                },
+            }
+        }
+    };
+
+    new Chart(
+        document.getElementById("barchart"),
         config
     );
 }
@@ -104,11 +162,11 @@ async function getapi(url) {
     }
 
     else if (document.querySelector("title").innerText == "Piechart") {
-        piechart(data)
+        piechart(data);
     }
 
     else if (document.querySelector("title").innerText == "Barchart") {
-
+        barchart(data);
     }
 }
 getapi(api_url);

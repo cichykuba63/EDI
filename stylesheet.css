@@ -1,0 +1,27 @@
+#container {
+    width: 1500px;
+    height: 709px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color:rgb(150, 167, 197);
+}
+
+#header {
+    text-align: center;
+    padding: 15px;
+    font-size: 50px;
+}
+
+#sidebar {
+    float: left;
+    width: 300px;
+    height: 609px;
+    background-color: aquamarine;
+}
+
+#content {
+    float: left;
+    width: 1200px;
+    height: 609px;
+    background-color: bisque;
+}
