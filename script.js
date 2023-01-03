@@ -31,10 +31,10 @@ function table(data) {
     <td>${r.budget}</td>
     <td>${r.film_director}</td>
     </tr>`;
-    }
+    };
 
     document.getElementById("movies").innerHTML = tab;
-}
+};
 
 
 function piechart(data) {
@@ -48,7 +48,7 @@ function piechart(data) {
         }
     };
 
-    labels.sort()
+    labels.sort();
 
     for (let index of Array(labels.length).keys()) {
         counter = 0;
@@ -58,7 +58,7 @@ function piechart(data) {
             };
         };
         itemData.push(counter);
-    }
+    };
 
     const info = {
         labels: labels,
@@ -90,7 +90,7 @@ function piechart(data) {
         document.getElementById("piechart"),
         config
     );
-}
+};
 
 function barchart(data) {
 
@@ -145,7 +145,7 @@ function barchart(data) {
         document.getElementById("barchart"),
         config
     );
-}
+};
 
 
 async function getapi(url) {
@@ -168,5 +168,5 @@ async function getapi(url) {
     else if (document.querySelector("title").innerText == "Barchart") {
         barchart(data);
     }
-}
+};
 getapi(api_url);
