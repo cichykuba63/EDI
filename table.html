@@ -5,19 +5,18 @@
         <meta name="description" content="Strona internetowa na potrzeby projektu grupowego z przedmiotu 'Elektroniczna wymiana danych'" />
         <meta name="keywords" content="projekt grupowy, EDI, Electronic Data Interchange, computer programmer, HTML, CSS, Javascript" />
         <meta http-equiv="X-UA-Compatibile" content="IE=edge,chrome=1" />
-
         <title>Table</title>
-
         <script src="script.js"></script>
         <link rel="stylesheet" href="stylesheet.css" type="text/css" />
         <script type='text/javascript' src="roll/flexcroll.js"></script>
     </head>
     <body>
 
-       <div id="container">
+       <div class="grid_container">
 
             <div id="header">
-                <h1>EDI - Group Project</h1>
+                <img src="kamera-logo.png">
+                <h3>EDI - Group Project</h3>
             </div>
 
             <div id="sidebar">
@@ -55,14 +54,12 @@
 
             <div id="content">
 
-                <div class="d-flex justify-content-center">
+                <div>
                     <div class="spinner-border" role="status" id="loading">
-                        <span class="sr-only"></span>
+                        <span class="sr-only">Loading</span>
                     </div>
-
                 </div>
-
-                <div class="flexcroll" style="overflow: auto;">
+                <div>
                     <table id="movies"></table>
                 </div>
 

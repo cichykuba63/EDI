@@ -6,35 +6,34 @@ function hideloader() {
 
 
 function table(data) {
-    let tab = 
-        `<tr>
-        <th>ID</th>
-        <th>Movie Title</th>
-        <th>Year of production</th>
-        <th>Country of origin</th>
-        <th>Language</th>
-        <th>Main Actor</th>
-        <th>Movie Genre</th>
-        <th>Budget</th>
-        <th>Film Director</th>
-        </tr>`;
-
+    let tab = `
+    <tr>
+    <th>ID</th>
+    <th>Movie Title</th>
+    <th>Year of production</th>
+    <th>Country of origin</th>
+    <th>Budget</th>
+    <th>Is in cinema?</th>
+    <th>Movie Genre</th>
+    <th>Main Actor</th>
+    <th>Film Director</th>
+    </tr>`;
     for (let r of data) {
         tab += `<tr>
-    <td>${r.id}</td>
-    <td>${r.movie_title}</td>
-    <td>${r.year_of_production}</td> 
-    <td>${r.country_of_origin}</td>
-    <td>${r.language}</td>
-    <td>${r.main_actor}</td>
-    <td>${r.movie_genre}</td>
-    <td>${r.budget}</td>
-    <td>${r.film_director}</td>
-    </tr>`;
-    };
+        <td>${r.id}</td>
+        <td>${r.movie_title}</td>
+        <td>${r.year_of_production}</td> 
+        <td>${r.country_of_origin}</td>
+        <td>${r.budget}</td>
+        <td>${r.is_in_cinema}</td>
+        <td>${r.movie_genre}</td>
+        <td>${r.main_actor}</td>
+        <td>${r.film_director}</td>
+        </tr>`;
+    }
+document.getElementById("movies").innerHTML = tab;
 
-    document.getElementById("movies").innerHTML = tab;
-};
+}
 
 
 function piechart(data) {
@@ -48,7 +47,7 @@ function piechart(data) {
         }
     };
 
-    labels.sort();
+    labels.sort()
 
     for (let index of Array(labels.length).keys()) {
         counter = 0;
@@ -58,7 +57,7 @@ function piechart(data) {
             };
         };
         itemData.push(counter);
-    };
+    }
 
     const info = {
         labels: labels,
@@ -90,7 +89,7 @@ function piechart(data) {
         document.getElementById("piechart"),
         config
     );
-};
+}
 
 function barchart(data) {
 
@@ -145,7 +144,7 @@ function barchart(data) {
         document.getElementById("barchart"),
         config
     );
-};
+}
 
 
 async function getapi(url) {
@@ -168,5 +167,5 @@ async function getapi(url) {
     else if (document.querySelector("title").innerText == "Barchart") {
         barchart(data);
     }
-};
+}
 getapi(api_url);
