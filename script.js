@@ -81,7 +81,7 @@ function piechart(data) {
                 title: {
                     display: true,
                     text: "Year of production of the films"
-                },
+                }
             }
         }
     };
