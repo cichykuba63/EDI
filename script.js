@@ -44,7 +44,7 @@ function piechart(data) {
         // adding all dates to allDates variable
         allDates.push(r.year_of_production);
         if (labels.includes(r.year_of_production) == false) {
-            // adding only single dates to labels variable
+            // only adding single dates to labels variable
             labels.push(r.year_of_production);
         };
     };
@@ -54,10 +54,12 @@ function piechart(data) {
     for (let index of Array(labels.length).keys()) {
         counter = 0;
         for (let date of allDates) {
+            // counting amount of specific date
             if (date == labels[index]) {
                 counter++;
             };
         };
+        // adding this counting to the variable
         itemData.push(counter);
     };
 
@@ -97,8 +99,10 @@ function barchart(data) {
     let labels = []; let allData = []; let itemData = []; let counter = 0;
 
     for (let r of data) {
+        // adding all countries to allData variable
         allData.push(r.country_of_origin);
         if (labels.includes(r.country_of_origin) == false) {
+            // only adding single countries to labels variable
             labels.push(r.country_of_origin);
         };
     };
@@ -108,10 +112,12 @@ function barchart(data) {
     for (let index of Array(labels.length).keys()) {
         counter = 0;
         for (let date of allData) {
+            // counting amount of specific country
             if (date == labels[index]) {
                 counter++;
             };
         };
+        // adding this counting to the variable
         itemData.push(counter);
     };
 
@@ -148,9 +154,11 @@ function barchart(data) {
 };
 
 async function getapi(url) {
+    // getting response from given url
     const response = await fetch(url);
 
-    let data = await response.json();   //data in json format are stored in 'data' variable
+    //data in json format are stored in data variable
+    let data = await response.json();
         
     if (response) {
         hideloader();
