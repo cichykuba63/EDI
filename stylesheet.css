@@ -3,11 +3,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: 79px auto 20px;
-    background-color:rgb(150, 167, 197);
+    background-color:#1a2238;
     gap: 0px;
 }
-
-h3 {
+h3{
+    color: #f4db7d;
     margin-right: 30px;
     float: right;
     margin-top: auto;
@@ -25,55 +25,92 @@ h3 {
 }
 
 #sidebar {
-    background-color: rgb(255, 225, 142);
+    background-color:#eb7d5b;
     grid-row-start: 2;
     grid-column-start: 1;
     grid-row-end: 3;
     grid-column-end: 2;
     max-height: max-content;
+    text-align: center;
 }
 
 #content {
     overflow: auto;
-    background-color: bisque;
+    background-color:#373f6c;
     grid-row-start: 2;
     grid-column-start: 2;
     grid-row-end: 3;
     grid-column-end: 5;
-    padding: 40px;
+    text-align:center;
 }
-
 #movies { 
-    color: red;
+    color:#f4db7d;
+    border-collapse: collapse;
 }
-
-#footer {
+td,tr,th{
+    border:#1a2238 solid 1px;
+}
+#footer{
+    text-align: center;
     grid-row-start: 3;
     grid-column-start: 1;
  
     grid-row-end: 4;
     grid-column-end: 5;
     max-height: max-content;
-    text-align: center;
+    color:#f4db7d;
 }
-
-body {
+body{
+    color:black;
     margin:0px;
+    font-family: "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
 }
-
-img {
+.cameraimg{
     margin-left:10px;
     float: left;
     height: 79px;
     width: 79px;
 }
-
-#members {
-    font-size: 30px;
-    padding: 20px;
+.menuButtons{
+    background-color: #9daaf2;
+    text-align: center;
+    margin:25px;
+    padding:5px;
+    border-radius: 15px;
 }
-
-#menu {
-    font-size: 30px;
-    padding: 20px;
+#menuSidebar{
+    padding: 10px;
 }
+.members{
+    background-color: #eb7d5b;
+}
+.bold_text{
+    font-size:30px;
+}
+#members{
+    border-bottom:3px solid #1a2238;
+}
+a{
+    color:black;
+    text-decoration: none;
+}
+#Welcomtext{
+    background-color: #9daaf2;
+    border-radius: 15px;
+    width:auto;
+    margin:50px;
+}
+#popcornImg{
+    width: 400px;
+    height:400px;
+    border-radius: 15px;
+}
+.chart-container{
+    margin:10px;
+    height:inherit;
+    width: inherit;
+}
+/*#barchart{
+    height:max-content;
+    width:max-content;
+}*/
