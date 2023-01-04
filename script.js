@@ -5,6 +5,7 @@ function hideloader() {
 };
 
 function table(data) {
+    // creating table headings
     let tab = 
         `<tr>
         <th>ID</th>
@@ -18,6 +19,7 @@ function table(data) {
         <th>Film Director</th>
         </tr>`
 
+    // adding table description to table
     for (let r of data) {
         tab += `<tr>
         <td>${r.id}</td>
@@ -39,8 +41,10 @@ function piechart(data) {
     let labels = []; let allDates = []; let itemData = []; let counter = 0;
 
     for (let r of data) {
+        // adding all dates to allDates variable
         allDates.push(r.year_of_production);
         if (labels.includes(r.year_of_production) == false) {
+            // adding only single dates to labels variable
             labels.push(r.year_of_production);
         };
     };
@@ -146,7 +150,7 @@ function barchart(data) {
 async function getapi(url) {
     const response = await fetch(url);
 
-    let data = await response.json(); //data in json format are stored in 'data' variable
+    let data = await response.json();   //data in json format are stored in 'data' variable
         
     if (response) {
         hideloader();
@@ -163,5 +167,6 @@ async function getapi(url) {
     else if (document.querySelector("title").innerText == "Barchart") {
         barchart(data);
     }
-}
+};
+
 getapi(api_url);
