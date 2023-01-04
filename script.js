@@ -2,22 +2,22 @@ const api_url = "https://my.api.mockaroo.com/movies.json?key=4dc73f40";
 
 function hideloader() {
     document.getElementById('loading').style.display = 'none';
-}
-
+};
 
 function table(data) {
-    let tab = `
-    <tr>
-    <th>ID</th>
-    <th>Movie Title</th>
-    <th>Year of production</th>
-    <th>Country of origin</th>
-    <th>Budget</th>
-    <th>Is in cinema?</th>
-    <th>Movie Genre</th>
-    <th>Main Actor</th>
-    <th>Film Director</th>
-    </tr>`;
+    let tab = 
+        `<tr>
+        <th>ID</th>
+        <th>Movie Title</th>
+        <th>Year of production</th>
+        <th>Country of origin</th>
+        <th>Budget</th>
+        <th>Is in cinema?</th>
+        <th>Movie Genre</th>
+        <th>Main Actor</th>
+        <th>Film Director</th>
+        </tr>`
+
     for (let r of data) {
         tab += `<tr>
         <td>${r.id}</td>
@@ -29,25 +29,23 @@ function table(data) {
         <td>${r.movie_genre}</td>
         <td>${r.main_actor}</td>
         <td>${r.film_director}</td>
-        </tr>`;
-    }
-document.getElementById("movies").innerHTML = tab;
+        </tr>`
+    };
 
-}
-
+    document.getElementById("movies").innerHTML = tab;
+};
 
 function piechart(data) {
-
     let labels = []; let allDates = []; let itemData = []; let counter = 0;
 
     for (let r of data) {
         allDates.push(r.year_of_production);
         if (labels.includes(r.year_of_production) == false) {
             labels.push(r.year_of_production);
-        }
+        };
     };
 
-    labels.sort()
+    labels.sort();
 
     for (let index of Array(labels.length).keys()) {
         counter = 0;
@@ -57,7 +55,7 @@ function piechart(data) {
             };
         };
         itemData.push(counter);
-    }
+    };
 
     const info = {
         labels: labels,
@@ -75,7 +73,7 @@ function piechart(data) {
             responsive: true,
             plugins: {
                 legend: {
-                    display: false,
+                    display: false
                 },
                 title: {
                     display: true,
@@ -89,17 +87,16 @@ function piechart(data) {
         document.getElementById("piechart"),
         config
     );
-}
+};
 
 function barchart(data) {
-
     let labels = []; let allData = []; let itemData = []; let counter = 0;
 
     for (let r of data) {
         allData.push(r.country_of_origin);
         if (labels.includes(r.country_of_origin) == false) {
             labels.push(r.country_of_origin);
-        }
+        };
     };
 
     labels.sort();
@@ -130,12 +127,12 @@ function barchart(data) {
             responsive: true,
             plugins: {
                 legend: {
-                    display: false,
+                    display: false
                 },
                 title: {
                     display: true,
                     text: "Countries of origin of movies"
-                },
+                }
             }
         }
     };
@@ -144,8 +141,7 @@ function barchart(data) {
         document.getElementById("barchart"),
         config
     );
-}
-
+};
 
 async function getapi(url) {
     const response = await fetch(url);
