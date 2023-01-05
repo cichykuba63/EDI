@@ -167,7 +167,7 @@ window.onload = async function getapi() {
     };
 
     // Reading sessionStorage then turning it into JSON format and assinging it to a variable API_Data 
-    var API_Data = await JSON.parse(sessionStorage.getItem("movie_API_Data"));      
+    const API_Data = await JSON.parse(sessionStorage.getItem("movie_API_Data"));      
 
     if (document.querySelector("title").innerText == "Table") {
         hideloader();
