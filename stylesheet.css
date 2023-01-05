@@ -130,11 +130,11 @@ a {
    width:90%;
    height:90%;
 }
-/* #barchart{
-    max-width:80%;
-    max-height:80%;
+#barchart{
+    max-width:99.9%;
+    max-height:99.9%;
 }
 #piechart{
-    max-width:80%;
-    max-height:80%;
+    max-width:99.9%;
+    max-height:99.9%;
 }
