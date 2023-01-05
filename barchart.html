@@ -5,6 +5,7 @@
         <meta name="description" content="Internet website for the need of group project from subject 'Electronic Data Interchange'" />
         <meta name="keywords" content="group project, EDI, Electronic Data Interchange, computer programmer, HTML, CSS, Javascript" />
         <meta http-equiv="X-UA-Compatibile" content="IE=edge,chrome=1" />
+        
         <title>Barchart</title>
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="script.js"></script>
@@ -13,51 +14,39 @@
     <body>
        <div class="grid_container">
             <div id="header">
-                <img class="cameraimg" src="kamera-logo.png">
+                <img class="cameraimg" src="kamera-logo.png" />
                 <h3>EDI - Group Project</h3>
             </div>
             <div id="sidebar">
-
                 <div id="members">
                     <p class="members"><b class="bold_text">Group Members:</b></p>
                         <p class="members">Jakub Słowiak</p>
                         <p class="members">Krystian Gwizdała</p>
                         <p class="members">Szymon Wróblewski</p>
                 </div>
-
                 <div id="menu">
                     <p id="MenuSidebar"><b class="bold_text">Menu:</b></p>
                         <a href="index.html" title="Go to main menu">
                             <p class="menuButtons">Main page</p>
                         </a>
-
                         <a href="table.html" title="Table section">
                             <p class="menuButtons">Table</p>
                         </a>
-
                         <a href="piechart.html" title="Piechart content">
                             <p class="menuButtons">Piechart</p>
                         </a>
-
-                        <a href="barchart.html" title-="Barchart content">
+                        <a href="barchart.html" title="Barchart content">
                             <p class="menuButtons">Barchart</p>
                         </a>
                 </div>
-
             </div>
-
             <div id="content">
-
-                <!-- <div class="d-flex justify-content-center"> -->
-                    <div class="spinner-border" role="status" id="loading">
-                        <span class="sr-only"></span>
-                    </div>
-                <!-- </div> -->
-            
+                <div class="spinner-border" role="status" id="loading">
+                    <span class="sr-only">Loading...</span>
+                </div>
                 <div class="chart-container-flex">
                     <canvas id="barchart"></canvas>
                 </div>
-            
             </div>
             <div id="footer">
                 2022&copy;. Group Project Website. All rights reserved.
