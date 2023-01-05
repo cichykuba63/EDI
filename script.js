@@ -1,4 +1,4 @@
-const api_url = "https://my.api.mockaroo.com/movies.json?key=82d56ac0";
+const api_url = "https://my.api.mockaroo.com/movies.json?key=4dc73f40";
 
 function hideloader() {
     document.getElementById('loading').style.display = 'none';
