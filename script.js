@@ -1,4 +1,4 @@
-const api_url = "https://my.api.mockaroo.com/movies.json?key=4dc73f40";
+const api_url = "https://my.api.mockaroo.com/movies.json?key=82d56ac0";
 
 function hideloader() {
     document.getElementById('loading').style.display = 'none';
@@ -153,28 +153,27 @@ function barchart(data) {
     );
 };
 
-async function getapi(url) {
-    // getting response from given url
-    const response = await fetch(url);
-
-    //data in json format are stored in data variable
-    let data = await response.json();
-        
-    if (response) {
-        hideloader();
-    };
-
+window.onload = async function getapi() {
+    if(sessionStorage.getItem('movie_API_Data') === null){// Checking if key value "movie_API_Data" exists in seesionStorage
+        const response = await fetch(api_url);// getting response from given url
+        let data = await response.json(); //data in json format are stored in data variable
+        sessionStorage.setItem("movie_API_Data", JSON.stringify(data)); // Turing the JSON data into string from variable data and adding it to sessionStorage
+        console.log('Just created sessionStorage');
+    }
+    var API_Data = await JSON.parse(sessionStorage.getItem("movie_API_Data"));// Reading sessionStorage then turning it into JSON format and assinging it to a variable named API_Data 
+    console.log(API_Data)
     if (document.querySelector("title").innerText == "Table") {
-        table(data);
+        hideloader();
+        table(API_Data);
     }
 
     else if (document.querySelector("title").innerText == "Piechart") {
-        piechart(data);
+        hideloader();
+        piechart(API_Data);
     }
 
     else if (document.querySelector("title").innerText == "Barchart") {
-        barchart(data);
+        hideloader();
+        barchart(API_Data);
     }
 };
-
-getapi(api_url);
