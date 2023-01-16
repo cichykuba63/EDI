@@ -1,4 +1,4 @@
-const api_url = "https://my.api.mockaroo.com/movies.json?key=4dc73f40";
+const api_url = "https://my.api.mockaroo.com/movies.json?key=";
 
 function hideloader() {
     document.getElementById('loading').style.display = 'none';
@@ -154,21 +154,32 @@ function barchart(data) {
 };
 
 window.onload = async function getapi() {
-    // Checking if key value "movie_API_Data" exists in seesionStorage
-    if (sessionStorage.getItem('movie_API_Data') === null) {  
-        // getting response from given url
-        const response = await fetch(api_url);
+    let new_api_url = ''
+    do{
+        while (sessionStorage.getItem('API_key') === "" || sessionStorage.getItem('API_key') === null){
+            let key = prompt("Enter valid API key");
+            sessionStorage.setItem("API_key", key);
+        }
+        new_api_url = api_url + sessionStorage.getItem("API_key");
+        // Checking if key value "movie_API_Data" exists in seesionStorage
+        if (sessionStorage.getItem('movie_API_Data') === null  || sessionStorage.getItem('movie_API_Data') === '') {  
+            // getting response from given url
+            const response = await fetch(new_api_url);
 
-        //data in json format are stored in data variable
-        let data = await response.json();
-        
-        // Turing the JSON data into string from variable data and adding it to sessionStorage
-        sessionStorage.setItem("movie_API_Data", JSON.stringify(data));      
-    };
-
-    // Reading sessionStorage then turning it into JSON format and assinging it to a variable API_Data 
-    const API_Data = await JSON.parse(sessionStorage.getItem("movie_API_Data"));      
-
+            //data in json format are stored in data variable
+            let data = await response.json();
+            
+            // Turing the JSON data into string from variable data and adding it to sessionStorage
+            sessionStorage.setItem("movie_API_Data", JSON.stringify(data));      
+        };
+        // Reading sessionStorage then turning it into JSON format and assinging it to a variable API_Data 
+        var API_Data = await JSON.parse(sessionStorage.getItem("movie_API_Data")); 
+        if (sessionStorage.getItem("movie_API_Data") == '{"error":"Invalid API Key"}'){
+            alert("Invalid API, try again.");
+            sessionStorage.setItem('API_key', '');
+            sessionStorage.setItem("movie_API_Data", '');
+        };
+    }while (sessionStorage.getItem("movie_API_Data") == '')
     if (document.querySelector("title").innerText == "Table") {
         hideloader();
         table(API_Data);
